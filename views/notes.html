@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mes Notes</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>Mes Notes</h1>
+
+  <div class="add-note">
+    <input type="text" id="note-input" placeholder="Nouvelle note...">
+    <button id="add-btn">Ajouter</button>
+  </div>
+
+  <ul id="notes-list"></ul>
+
+  <script>
+    function loadNotes() {
+      fetch('/notes')
+        .then(res => res.json())
+        .then(notes => {
+          const list = document.getElementById('notes-list');
+          list.innerHTML = '';
+          notes.forEach(note => {
+            const li = document.createElement('li');
+            li.className = 'note-item';
+            li.innerHTML = `
+              <span>#${note.id} - ${note.text}</span>
+              <button class="delete-btn" onclick="deleteNote(${note.id})">Supprimer</button>
+            `;
+            list.appendChild(li);
+          });
+        });
+    }
+
+    function addNote() {
+      const input = document.getElementById('note-input');
+      const text = input.value.trim();
+      
+      if (!text) return;
+
+      fetch('/notes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text })
+      })
+        .then(res => res.json())
+        .then(() => {
+          input.value = '';
+          loadNotes();
+        });
+    }
+
+    function deleteNote(id) {
+      fetch(`/notes/${id}`, { method: 'DELETE' })
+        .then(() => loadNotes());
+    }
+
+    document.getElementById('add-btn').addEventListener('click', addNote);
+    document.getElementById('note-input').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') addNote();
+    });
+
+    loadNotes();
+  </script>
+</body>
+
+<footer>
+  <p>&copy; 2024 Mes Notes App</p>
+</footer>
+</html>
