@@ -27,7 +27,7 @@
             const li = document.createElement('li');
             li.className = 'note-item';
             li.innerHTML = `
-              <span>#${note.id} - ${note.text}</span>
+              <span>Note N°${note.id} - ${note.text}</span>
               <button class="delete-btn" onclick="deleteNote(${note.id})">Supprimer</button>
             `;
             list.appendChild(li);
@@ -71,3 +71,5 @@
   <p>&copy; 2024 Mes Notes App</p>
 </footer>
 </html>
+
+{# notes la partie script permet d'utiliser le crud des notes. par exemple, addNote() appelle fetch('/notes') (ou "/") avec la méthode post pour ajouter une note. deleteNote(id) appelle fetch("/notes/id") avec la méthode delete pour supprimer une note. ce qui permet en plus des tests avec jest et de postman de tester le code. #}

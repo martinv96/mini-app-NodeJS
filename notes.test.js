@@ -33,3 +33,11 @@ describe('API Notes', () => {
     expect(get.statusCode).toBe(404);
   });
 });
+
+
+// Note: Ici j'utilise Jest et Supertest pour tester une API RESTful de gestion de notes.
+//       Il faut utiliser les fonctions de test de Jest pour exécuter les tests et les assertions. exemple:
+//       expect(res.statusCode).toBe(200);
+//       Supertest pour envoyer des requêtes HTTP et vérifier les réponses. exemple:
+//       const res = await request(app).get('/notes');
+//       Pour lancer les tests : "npm test".
