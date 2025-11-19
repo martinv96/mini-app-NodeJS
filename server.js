@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 3000;
 // Import du Router notes
 const notesRouter = require('./routes/notes');
 
-// Pour lire les JSON
+// permet de paser le JSON pour structurer les données (les données brutes deviennent un objet JS)
 app.use(express.json());
 
 // Servir les fichiers statiques du dossier views
@@ -51,3 +51,5 @@ if (require.main === module) {
 
 // Export de l'app pour les tests
 module.exports = app;
+
+// Notes : Un middleware est une fonction intermédiaire, un point de controle entre la requête et la réponse. peut par exemple gérer les erreurs.

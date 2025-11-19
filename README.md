@@ -46,7 +46,7 @@ Ouvrez `http://localhost:3000/notes/html` dans votre navigateur pour gérer vos 
 - `DELETE /notes/:id` : Supprime une note
 - `GET /notes/html` : Interface web
 
-## Exemples curl
+## Exemples curl (envoie de requêtes HTTP pures à l'API sans framework)
 
 **Lister les notes**
 ```bash

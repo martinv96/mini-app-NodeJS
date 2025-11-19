@@ -78,7 +78,7 @@ router.delete('/:id', (req, res) => {
 
   const index = notes.findIndex(n => n.id === id);
 
-  if (index === -1) {
+  if (index < 0) {
     return res.status(404).json({ error: 'pas de note trouvée' });
   }
 
